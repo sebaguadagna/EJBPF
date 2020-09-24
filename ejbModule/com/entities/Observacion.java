@@ -43,6 +43,30 @@ public class Observacion implements Serializable {
 	
 	private boolean validarExperto;
 	
+	private String coordenadas;
+	
+	private String imagen;
+	
+	
+	public String getCoordenadas() {
+		return coordenadas;
+	}
+
+
+	public void setCoordenadas(String coordenadas) {
+		this.coordenadas = coordenadas;
+	}
+
+
+	public String getImagen() {
+		return imagen;
+	}
+
+
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
 
 	public Long getId_observacion() {
 		return id_observacion;
