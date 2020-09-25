@@ -121,6 +121,7 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
 	    	uDTO.setDocumentoCategoria(us.get(0).getDoc().getCategoria_nombre().name());
 	    	uDTO.setDocumento(us.get(0).getDocumento());
 	    	uDTO.setEstadoUsuario(us.get(0).getEstado().getEstado_valor().name());
+	    	uDTO.setDireccion(us.get(0).getDireccion());
 		}
     	
     	return uDTO;
