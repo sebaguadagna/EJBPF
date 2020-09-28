@@ -135,6 +135,24 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
     	
     }
     
+    public UsuarioDTO prepararValidarUsuario(String email, String password) throws ServiciosException, NoSuchAlgorithmException {
+    	
+    	UsuarioDTO udto = new UsuarioDTO();
+    	Md5Encrypt enpass = new Md5Encrypt(password);
+    	Usuario usr = uPersistencia.validarUsuario(email, enpass.getEncryptedPass());
+    	
+    	if ( usr != null) {
+    		udto.setNombre(usr.getNombre());
+    		udto.setEmail(usr.getEmail());
+    		udto.setRol(usr.getRol().getRol().toString());
+    		udto.setEstadoUsuario(usr.getEstado().getEstado_valor().toString());
+    		return udto;
+    	}else {
+    		return null;
+    	}
+    	
+    }
+    
     
     /*
      * Servicios para la REST y JSF
@@ -143,6 +161,7 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
 	@Override
 	public void agregarUsuario(UsuarioDTO usuarioDTO) throws  ServiciosException, NoSuchAlgorithmException  {		
 		uPersistencia.altaUsuario(this.prepararUsuario(usuarioDTO));
+		
 	}
 
 	
@@ -170,7 +189,15 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
 		
 	}
 	
-	
+	@Override
+	public UsuarioDTO validarUsuario(String email, String password) throws ServiciosException, NoSuchAlgorithmException{
+		UsuarioDTO udto = prepararValidarUsuario(email, password);
+		if(udto != null && udto.getEstadoUsuario().equals(EnumEstadoUsuario.HABILITADO.toString())) {
+			return udto;
+		}else {
+			return null;
+		}
+	}
     
     
 

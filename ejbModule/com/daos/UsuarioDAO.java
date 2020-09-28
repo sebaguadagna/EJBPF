@@ -100,15 +100,16 @@ public class UsuarioDAO implements IUsuarioDAO {
 	}
 	
 	
-	//Esto es para probar la REST
+	
 	@Override
-	public Boolean validarUsuario(String username, String password) throws ServiciosException {
+	public Usuario validarUsuario(String email, String password) throws ServiciosException {
 		try {
-			TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.username = :us AND u.passwd = :ps", Usuario.class)
-					.setParameter("us", username)
+			TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.email = :e AND u.passwd = :ps", Usuario.class)
+					.setParameter("e", email)
 					.setParameter("ps", password);
 			 
-			return !query.getResultList().isEmpty();
+			return query.getSingleResult();
+			//return !query.getResultList().isEmpty();
 			
 			} catch (PersistenceException e)  {
 				throw new ServiciosException("No se pudo realizar la consula" );

@@ -16,6 +16,6 @@ public interface IUsuarioDAO {
 	List<Usuario> obtenerPorEmail(String email) throws ServiciosException;
 	Usuario findForMerge (Long pk) throws ServiciosException;
 	List<Usuario> obtenerTodosLosUsuarios() throws ServiciosException;
-	public Boolean validarUsuario(String username, String password) throws ServiciosException;
+	public Usuario validarUsuario(String email, String password) throws ServiciosException;
 
 }

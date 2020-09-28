@@ -22,6 +22,8 @@ public class Fenomeno implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@SequenceGenerator(name = "seqFenomeno", initialValue=1, sequenceName="SEQ_ID_FENOMENO")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="seqFenomeno")
 	private Long id_fenomeno;
 	
 	@Column(nullable = false)

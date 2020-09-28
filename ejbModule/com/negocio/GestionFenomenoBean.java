@@ -1,5 +1,5 @@
 package com.negocio;
-import java.security.NoSuchAlgorithmException;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -21,7 +21,7 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
     }
 
    
-    public Fenomeno prepararFenomeno(FenomenoDTO fenomenoDTO) throws ServiciosException, NoSuchAlgorithmException {
+    public Fenomeno prepararFenomeno(FenomenoDTO fenomenoDTO) throws ServiciosException {
     	
     	Fenomeno fenomenoAdd = new Fenomeno();
     	
@@ -45,6 +45,7 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
 		for(Fenomeno f : feno) {			
 			FenomenoDTO fenDTO = new FenomenoDTO();
 			fenDTO.setCodigo(f.getCodigo());
+			System.out.println("CODIGO " + f.getCodigo());
 			fenDTO.setNombre(f.getNombre());
 			fenDTO.setDescripcion(f.getDescripcion());
 			fenDTO.setTelefono(f.getTelefono());
@@ -61,27 +62,42 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
     	
     }
     
+    public FenomenoDTO prepararFenomenoCodigo(String codigo) throws ServiciosException{
+    	
+    	FenomenoDTO fdto = new FenomenoDTO();
+    	
+    	if(!fPersistencia.obtenerPorNombre(codigo).isEmpty()) {
+    		Fenomeno f = fPersistencia.obtenerPorNombre(codigo).get(0);
+    		fdto.setCodigo(f.getCodigo());
+    		fdto.setDescripcion(f.getDescripcion());
+    		fdto.setNombre(f.getNombre());
+    		fdto.setTelefono(f.getTelefono());
+    		return fdto;
+    	}
+    	return null;
+    }
+    
     
     /*
      * Servicios para la REST y JSF
      */
     
 	@Override
-	public void agregarFenomeno(FenomenoDTO fenomenoDTO) throws  ServiciosException, NoSuchAlgorithmException  {		
+	public void agregarFenomeno(FenomenoDTO fenomenoDTO) throws  ServiciosException  {		
 		fPersistencia.altaFenomeno(this.prepararFenomeno(fenomenoDTO));
 	}
 
 	
 	
 	@Override
-	public void modificarFenomeno(FenomenoDTO fenomenoDTO) throws NoSuchAlgorithmException, ServiciosException  {
+	public void modificarFenomeno(FenomenoDTO fenomenoDTO) throws  ServiciosException  {
 		fPersistencia.modificarFenomeno(this.prepararFenomeno(fenomenoDTO));
 	}
 
-//	@Override
-//	public void bajaFenomeno(int pk) throws  ServiciosException {
-//		fPersistencia.bajaFenomeno(this.prepararBajaFenomeno(pk));    
-//		}
+	@Override
+	public FenomenoDTO obtenerFenomenoNombre(String nombre) throws  ServiciosException{
+		return this.prepararFenomenoCodigo(nombre);
+	};
 	
 	@Override
 	public List<FenomenoDTO> obtenerFenomenos() throws ServiciosException {

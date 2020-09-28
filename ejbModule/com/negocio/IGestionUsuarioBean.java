@@ -15,5 +15,6 @@ public interface IGestionUsuarioBean {
 	public List<UsuarioDTO> obtenerUsuarios() throws ServiciosException;
 	public UsuarioDTO obtenerUsuarioEmail(String email) throws ServiciosException;
 	public void bajaLogicaUsuario(String email) throws  ServiciosException;
+	public UsuarioDTO validarUsuario(String email, String password) throws ServiciosException, NoSuchAlgorithmException;
 
 }
