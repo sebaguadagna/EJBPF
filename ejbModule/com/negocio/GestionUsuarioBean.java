@@ -5,6 +5,8 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
+
+
 import com.daos.DocumentoCategoriaDAO;
 import com.daos.EstadoUsuarioDAO;
 import com.daos.TipoUsuarioDAO;
@@ -198,6 +200,9 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
 			return null;
 		}
 	}
+
+
+
     
     
 

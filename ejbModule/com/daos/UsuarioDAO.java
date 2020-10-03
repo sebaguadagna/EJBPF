@@ -108,7 +108,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 					.setParameter("e", email)
 					.setParameter("ps", password);
 			 
-			return query.getSingleResult();
+			return query.getResultList().get(0);
 			//return !query.getResultList().isEmpty();
 			
 			} catch (PersistenceException e)  {
