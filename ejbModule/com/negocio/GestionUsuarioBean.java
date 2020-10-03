@@ -143,6 +143,9 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
     	Md5Encrypt enpass = new Md5Encrypt(password);
     	Usuario usr = uPersistencia.validarUsuario(email, enpass.getEncryptedPass());
     	
+    	
+  
+    	
     	if ( usr != null) {
     		udto.setNombre(usr.getNombre());
     		udto.setEmail(usr.getEmail());
