@@ -43,7 +43,7 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
     }
 
    
-    public Usuario prepararUsuario(UsuarioDTO usuarioDTO) throws ServiciosException, NoSuchAlgorithmException {
+    private Usuario prepararUsuario(UsuarioDTO usuarioDTO) throws ServiciosException, NoSuchAlgorithmException {
     	
     	Usuario usuarioAdd = new Usuario();
     	
@@ -85,7 +85,7 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
     }
     
     
-    public List<UsuarioDTO> prepararTodosLosUsuarios() throws ServiciosException{
+    private List<UsuarioDTO> prepararTodosLosUsuarios() throws ServiciosException{
     	
     	List<Usuario> us = uPersistencia.obtenerTodosLosUsuarios();
 		List<UsuarioDTO> usDTO= new ArrayList<UsuarioDTO>();
@@ -109,7 +109,7 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
 		return usDTO;	
     }
     
-    public UsuarioDTO prepararUsuarioEmail(String email) throws ServiciosException {
+    private UsuarioDTO prepararUsuarioEmail(String email) throws ServiciosException {
 		List <Usuario> us = uPersistencia.obtenerPorEmail(email);
 		UsuarioDTO uDTO = new UsuarioDTO();
 		
@@ -129,7 +129,7 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
     	return uDTO;
     }
     
-    public Usuario prepararBajaLogicaUsuario(String email) throws ServiciosException {
+    private Usuario prepararBajaLogicaUsuario(String email) throws ServiciosException {
     	Usuario us = uPersistencia.obtenerPorEmail(email).get(0);
     	EstadoUsuario es = euPersistencia.obtenerPorEstado(EnumEstadoUsuario.DESHABILITADO).get(0);
     	us.setEstado(es);
@@ -137,7 +137,7 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
     	
     }
     
-    public UsuarioDTO prepararValidarUsuario(String email, String password) throws ServiciosException, NoSuchAlgorithmException {
+    private UsuarioDTO prepararValidarUsuario(String email, String password) throws ServiciosException, NoSuchAlgorithmException {
     	
     	UsuarioDTO udto = new UsuarioDTO();
     	Md5Encrypt enpass = new Md5Encrypt(password);
