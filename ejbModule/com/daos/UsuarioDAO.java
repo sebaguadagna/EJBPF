@@ -108,8 +108,9 @@ public class UsuarioDAO implements IUsuarioDAO {
 					.setParameter("e", email)
 					.setParameter("ps", password);
 			 
-			return query.getSingleResult();
-			//return !query.getResultList().isEmpty();
+			return (!query.getResultList().isEmpty())?
+					query.getResultList().get(0):
+						null;
 			
 			} catch (PersistenceException e)  {
 				throw new ServiciosException("No se pudo realizar la consula" );
