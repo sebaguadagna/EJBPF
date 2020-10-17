@@ -21,7 +21,7 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
     }
 
    
-    public Fenomeno prepararFenomeno(FenomenoDTO fenomenoDTO) throws ServiciosException {
+    private Fenomeno prepararFenomeno(FenomenoDTO fenomenoDTO) throws ServiciosException {
     	
     	Fenomeno fenomenoAdd = new Fenomeno();
     	
@@ -36,7 +36,7 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
     }
     
     
-    public List<FenomenoDTO> prepararTodosLosFenomenos() throws ServiciosException{
+    private List<FenomenoDTO> prepararTodosLosFenomenos() throws ServiciosException{
     	
     	List<Fenomeno> feno = fPersistencia.obtenerTodos();
 		List<FenomenoDTO> fenoDTO= new ArrayList<FenomenoDTO>();
@@ -55,14 +55,14 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
 		return fenoDTO;	
     }
     
-    public Fenomeno prepararBajaFenomeno(String codigo) throws ServiciosException {
+    private Fenomeno prepararBajaFenomeno(String codigo) throws ServiciosException {
     	Fenomeno fe = fPersistencia.obtenerPorNombre(codigo).get(0);
     	fe.setCodigo(codigo);
 		return fe;
     	
     }
     
-    public FenomenoDTO prepararFenomenoCodigo(String codigo) throws ServiciosException{
+    private FenomenoDTO prepararFenomenoCodigo(String codigo) throws ServiciosException{
     	
     	FenomenoDTO fdto = new FenomenoDTO();
     	
@@ -113,9 +113,6 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
 	}
 
 
-//	@Override
-//	public FenomenoDTO obtenerFenomeno(FenomenoDTO fenomeno) throws ServiciosException {
-//		return prepararFenomeno();
-//	}
+
 	
 }

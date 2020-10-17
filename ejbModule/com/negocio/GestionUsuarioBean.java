@@ -1,11 +1,12 @@
 package com.negocio;
+import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-
+import javax.naming.NamingException;
 
 import com.daos.DocumentoCategoriaDAO;
 import com.daos.EstadoUsuarioDAO;
@@ -21,6 +22,7 @@ import com.enumerados.EnumCategoriaDocumento;
 import com.enumerados.EnumCategoriaUsuario;
 import com.enumerados.EnumEstadoUsuario;
 import com.exception.ServiciosException;
+import com.ldap.ActiveDirectoryConnect;
 
 @LocalBean
 @Stateless
@@ -158,6 +160,11 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
     	
     }
     
+    private void prepararValidarLDAP(String user, String token) throws IOException, ServiciosException, NamingException{
+    	ActiveDirectoryConnect adc = new ActiveDirectoryConnect();
+    	adc.userAutenticar(user, token);
+    }
+    
     
     /*
      * Servicios para la REST y JSF
@@ -202,6 +209,11 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
 		}else {
 			return null;
 		}
+	}
+	
+	@Override
+	public void validarLDAP(String user, String token) throws NamingException, IOException, ServiciosException{
+		prepararValidarLDAP(user, token);
 	}
 
 
