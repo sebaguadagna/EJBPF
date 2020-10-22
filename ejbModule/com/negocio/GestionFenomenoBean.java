@@ -25,7 +25,7 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
     	
     	Fenomeno fenomenoAdd = new Fenomeno();
     	
-    	if(fenomenoDTO.getCodigo() != null ) fenomenoAdd.setCodigo(fenomenoDTO.getCodigo());
+    	if(fenomenoDTO.getId_fenomeno() != null ) fenomenoAdd.setId_fenomeno(fenomenoDTO.getId_fenomeno());
 		fenomenoAdd.setCodigo(fenomenoDTO.getCodigo());
 		fenomenoAdd.setNombre(fenomenoDTO.getNombre());
     	fenomenoAdd.setDescripcion(fenomenoDTO.getDescripcion());
@@ -54,20 +54,15 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
 		}
 		return fenoDTO;	
     }
+
     
-    private Fenomeno prepararBajaFenomeno(String codigo) throws ServiciosException {
-    	Fenomeno fe = fPersistencia.obtenerPorNombre(codigo).get(0);
-    	fe.setCodigo(codigo);
-		return fe;
-    	
-    }
-    
-    private FenomenoDTO prepararFenomenoCodigo(String codigo) throws ServiciosException{
+    private FenomenoDTO prepararFenomenoNombre(String nombre) throws ServiciosException{
     	
     	FenomenoDTO fdto = new FenomenoDTO();
     	
-    	if(!fPersistencia.obtenerPorNombre(codigo).isEmpty()) {
-    		Fenomeno f = fPersistencia.obtenerPorNombre(codigo).get(0);
+    	if(!fPersistencia.obtenerPorNombre(nombre).isEmpty()) {
+    		Fenomeno f = fPersistencia.obtenerPorNombre(nombre).get(0);
+    		fdto.setId_fenomeno(f.getId_fenomeno());
     		fdto.setCodigo(f.getCodigo());
     		fdto.setDescripcion(f.getDescripcion());
     		fdto.setNombre(f.getNombre());
@@ -96,7 +91,7 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
 
 	@Override
 	public FenomenoDTO obtenerFenomenoNombre(String nombre) throws  ServiciosException{
-		return this.prepararFenomenoCodigo(nombre);
+		return this.prepararFenomenoNombre(nombre);
 	};
 	
 	@Override
@@ -106,11 +101,6 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
 	}
 
 
-	@Override
-	public void bajaFenomeno(String fenomeno) throws ServiciosException {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 

@@ -11,10 +11,10 @@ import com.exception.ServiciosException;
 public interface IFenomenoDAO {
 	
 	void altaFenomeno(Fenomeno nombre) throws ServiciosException;
-	void bajaFenomeno(int pk) throws ServiciosException;
+	void bajaFenomeno(Long pk) throws ServiciosException;
 	void modificarFenomeno(Fenomeno nombre) throws ServiciosException;
 	List<Fenomeno> obtenerPorNombre(String descripcion) throws ServiciosException;
 	List<Fenomeno> obtenerTodos() throws ServiciosException;
-	Fenomeno findForMerge(int pk) throws ServiciosException;
+	Fenomeno findForMerge(Long pk) throws ServiciosException;
 
 }

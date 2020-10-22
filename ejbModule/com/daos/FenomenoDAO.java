@@ -39,7 +39,7 @@ public class FenomenoDAO implements IFenomenoDAO {
 	}
 
 	@Override
-	public void bajaFenomeno(int pk) throws ServiciosException {
+	public void bajaFenomeno(Long pk) throws ServiciosException {
 		try {
 			Fenomeno f = em.find(Fenomeno.class, pk);
 			em.remove(f);
@@ -51,9 +51,10 @@ public class FenomenoDAO implements IFenomenoDAO {
 	}
 
 	@Override
-	public void modificarFenomeno(Fenomeno nombre) throws ServiciosException {
+	public void modificarFenomeno(Fenomeno fenomeno) throws ServiciosException {
 		try {
-			em.merge(nombre);
+			
+			em.merge(fenomeno);
 			em.flush();
 		} catch (PersistenceException e) {
 			throw new ServiciosException("No se pudo modificar el fenomeno");
@@ -83,7 +84,7 @@ public class FenomenoDAO implements IFenomenoDAO {
 	}
 
 	@Override
-	public Fenomeno findForMerge(int pk) throws ServiciosException {
+	public Fenomeno findForMerge(Long pk) throws ServiciosException {
 		try {
 			Fenomeno nombre = em.find(Fenomeno.class, pk);
 			return nombre;

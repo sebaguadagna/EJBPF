@@ -13,7 +13,6 @@ public interface IGestionFenomenoBean {
 	public void agregarFenomeno(FenomenoDTO fenomenoDTO) throws ServiciosException;
 	public void modificarFenomeno(FenomenoDTO fenomenoDTO) throws   ServiciosException;
 	public List<FenomenoDTO> obtenerFenomenos() throws ServiciosException;
-	public void bajaFenomeno(String fenomeno) throws  ServiciosException;
 	public FenomenoDTO obtenerFenomenoNombre(String nombre) throws  ServiciosException;
 
 }
