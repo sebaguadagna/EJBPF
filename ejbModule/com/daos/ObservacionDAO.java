@@ -37,13 +37,13 @@ public class ObservacionDAO implements IObservacionDAO {
 			em.flush();
 		} catch (PersistenceException e) {
 		    
-			throw new ServiciosException("No se pudo dar de alta , la observacion");
+			e.getStackTrace();
 		}
 		
 	}
 
 	@Override
-	public void bajaObservacion(int pk) throws ServiciosException {
+	public void bajaObservacion(Long pk) throws ServiciosException {
 		try {
 			Fenomeno f = em.find(Fenomeno.class, pk);
 			em.remove(f);
@@ -83,7 +83,7 @@ public class ObservacionDAO implements IObservacionDAO {
 	}
 
 	@Override
-	public Observacion findForMerge(int pk) throws ServiciosException {
+	public Observacion findForMerge(Long pk) throws ServiciosException {
 		try {
 			Observacion obs = em.find(Observacion.class, pk);
 			return obs;
@@ -115,7 +115,7 @@ public class ObservacionDAO implements IObservacionDAO {
 	}
 
 	@Override
-	public List<Observacion> obtenerPorPK(int pk) throws ServiciosException {
+	public List<Observacion> obtenerPorPK(Long pk) throws ServiciosException {
 
 		try {
 			TypedQuery<Observacion> query = em.createQuery("SELECT o FROM Observacion o WHERE o.id_observacion = :pk", Observacion.class)

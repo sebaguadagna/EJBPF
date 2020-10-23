@@ -15,7 +15,7 @@ public interface ILocalidadDAO {
 	void bajaLocalidad(int pk) throws ServiciosException;
 	void modificarLocalidadDepartamento(Localidad l, int pkDepartamento) throws ServiciosException;
 	List<Localidad> obtenerLocalidadesPorDepartamento(EnumNombreDepartamento departamentoEnum) throws ServiciosException;
-	List<Localidad> obtenerLocalidadesPorPk(EnumNombreDepartamento departamentoEnum, String lc) throws ServiciosException;
+	List<Localidad> obtenerLocalidadesIdDosFiltros(EnumNombreDepartamento departamentoEnum, String lc) throws ServiciosException;
 	Localidad findForMerge(int pk) throws ServiciosException;
 
 }

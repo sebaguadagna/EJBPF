@@ -45,7 +45,6 @@ public class GestionFenomenoBean implements IGestionFenomenoBean {
 		for(Fenomeno f : feno) {			
 			FenomenoDTO fenDTO = new FenomenoDTO();
 			fenDTO.setCodigo(f.getCodigo());
-			System.out.println("CODIGO " + f.getCodigo());
 			fenDTO.setNombre(f.getNombre());
 			fenDTO.setDescripcion(f.getDescripcion());
 			fenDTO.setTelefono(f.getTelefono());

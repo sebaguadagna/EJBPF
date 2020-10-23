@@ -85,7 +85,7 @@ public class LocalidadDAO implements ILocalidadDAO{
 	}
 
 	@Override
-	public List<Localidad> obtenerLocalidadesPorPk(EnumNombreDepartamento departamentoEnum, String lc) throws ServiciosException {
+	public List<Localidad> obtenerLocalidadesIdDosFiltros(EnumNombreDepartamento departamentoEnum, String lc) throws ServiciosException {
 		try {
 			TypedQuery<Localidad> query = em.createQuery("SELECT l FROM Localidad l WHERE l.nombre = :s AND l.departamento.nombre = :d", Localidad.class)
 					.setParameter("d", departamentoEnum)

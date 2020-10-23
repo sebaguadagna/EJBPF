@@ -1,7 +1,7 @@
 package com.entities;
 
 import java.io.Serializable;
-import java.util.Calendar;
+import java.util.Date;
 
 
 import javax.persistence.*;
@@ -23,8 +23,8 @@ public class Observacion implements Serializable {
 	@JoinColumn(foreignKey=@ForeignKey(name="fk_voluntario_observacion"))
 	private Usuario usr_voluntario;
 	
-	@Temporal(TemporalType.TIMESTAMP)
-    private Calendar fechaHora;
+	@Temporal(TemporalType.DATE)
+    private Date fecha;
 	
 	@Column(length = 200)
 	private  String descripcion;
@@ -43,18 +43,30 @@ public class Observacion implements Serializable {
 	
 	private boolean validarExperto;
 	
-	private String coordenadas;
+	private double latitud;
+	
+	private double longitud;
 	
 	private String imagen;
 	
-	
-	public String getCoordenadas() {
-		return coordenadas;
+
+	public double getLatitud() {
+		return latitud;
 	}
 
 
-	public void setCoordenadas(String coordenadas) {
-		this.coordenadas = coordenadas;
+	public void setLatitud(double latitud) {
+		this.latitud = latitud;
+	}
+
+
+	public double getLongitud() {
+		return longitud;
+	}
+
+
+	public void setLongitud(double longitud) {
+		this.longitud = longitud;
 	}
 
 
@@ -98,13 +110,14 @@ public class Observacion implements Serializable {
 	}
 
 
-	public Calendar getFechaHora() {
-		return fechaHora;
+
+	public Date getFecha() {
+		return fecha;
 	}
 
 
-	public void setFechaHora(Calendar fechaHora) {
-		this.fechaHora = fechaHora;
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}
 
 

@@ -13,7 +13,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "FENOMENOS", uniqueConstraints = {
-		@UniqueConstraint(name="uk_codigo_fenomeno", columnNames= {"codigo"})
+		@UniqueConstraint(name="uk_codigo_fenomeno", columnNames= {"codigo"}),
+		@UniqueConstraint(name="uk_nombre_fenomeno", columnNames= {"nombre"})
 		})
 
 public class Fenomeno implements Serializable {

@@ -1,7 +1,6 @@
 package com.dto;
 
 import java.io.Serializable;
-import java.util.List;
 
 
 public class FenomenoDTO implements Serializable{
@@ -13,7 +12,7 @@ public class FenomenoDTO implements Serializable{
 	private String nombre;
 	private String descripcion;
 	private String telefono;
-	private List<CaracteristicaDTO> crcl; 
+
 	
 	
 	public FenomenoDTO() {
@@ -58,16 +57,6 @@ public class FenomenoDTO implements Serializable{
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-
-
-	public List<CaracteristicaDTO> getCrcl() {
-		return crcl;
-	}
-
-
-	public void setCrcl(List<CaracteristicaDTO> crcl) {
-		this.crcl = crcl;
 	}
 
 
