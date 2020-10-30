@@ -87,6 +87,29 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 			
 	}
 	
+	private List<ObservacionDTO> prepararObservacionesPorUsuario(String email) throws ServiciosException{
+		Usuario u = usuarioPersistencia.obtenerPorEmail(email).get(0); 
+		List<Observacion> ol = observacionPersistencia.obtenerPorUsuario(u);
+		List<ObservacionDTO> olDTO = new ArrayList<ObservacionDTO>();
+		
+		for(Observacion o : ol) {
+			ObservacionDTO oDTO = new ObservacionDTO();
+			oDTO.setCategoriaFenomeno(o.getCategoria().getNombre());
+			oDTO.setDepartamento(o.getLocalidad().getDepartamento().getNombre().name());
+			oDTO.setDescripcion(o.getDescripcion());
+			oDTO.setEmailVoluntario(o.getUsr_voluntario().getEmail());
+			oDTO.setFecha(o.getFecha());
+			oDTO.setId_observacion(o.getId_observacion());
+			oDTO.setImagen(o.getImagen());
+			oDTO.setLatitud(o.getLatitud());
+			oDTO.setLongitud(o.getLongitud());
+			oDTO.setValidarExperto(o.isValidarExperto());
+			olDTO.add(oDTO);
+		}
+		
+		return olDTO;
+	}
+	
 	
 	@Override
 	public void agregarObservacion(ObservacionDTO observacionDTO) throws ServiciosException {
@@ -103,6 +126,11 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 	@Override
 	public List<LocalidadDTO> obtenerLocalidadesPorDepartamento(String nombreDepartamento) throws ServiciosException {
 		return prepararLocalidades(nombreDepartamento);
+	}
+
+	@Override
+	public List<ObservacionDTO> obtenerObservacionesPorUsuario(String email) throws ServiciosException{
+	return this.prepararObservacionesPorUsuario(email);
 	}
 
 	

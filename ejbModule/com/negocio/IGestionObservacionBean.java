@@ -14,5 +14,5 @@ public interface IGestionObservacionBean {
 	public void agregarObservacion(ObservacionDTO observacionDTO) throws ServiciosException;
 	public void actualizarObservacion(ObservacionDTO observacionDTO) throws ServiciosException;
 	public List<LocalidadDTO> obtenerLocalidadesPorDepartamento(String nombreDepartamento)throws ServiciosException;
-	
+	public List<ObservacionDTO> obtenerObservacionesPorUsuario(String email) throws ServiciosException;
 }
