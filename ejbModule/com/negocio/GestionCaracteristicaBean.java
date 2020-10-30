@@ -1,5 +1,6 @@
 package com.negocio;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -42,6 +43,25 @@ public class GestionCaracteristicaBean implements IGestionCaracteristicaBean {
 	} 
 	
 	
+	private List<CaracteristicaDTO> prepararTodasLasCaracteristicas() throws ServiciosException{
+		List<Caracteristica> crc = cPersistencia.obtenerTodasLasCrs();
+		List<CaracteristicaDTO> crcDTO = new ArrayList<CaracteristicaDTO>();
+		
+		for(Caracteristica c : crc) {
+			CaracteristicaDTO cDTO = new CaracteristicaDTO();
+			cDTO.setEtiqueta(c.getEtiqueta());
+			cDTO.setFenomeno(c.getFenomeno().getNombre());
+			cDTO.setNombre(c.getNombre());
+			cDTO.setTipoDato(c.getTipoDato().name());
+			cDTO.setId_caracteristica(c.getId_caracteristica());
+			crcDTO.add(cDTO);
+		}
+		
+		return crcDTO;
+		
+	}
+	
+	
 	@Override
 	public void agregarCaracteristica(CaracteristicaDTO caracteristicaDTO) throws ServiciosException {
 		cPersistencia.altaCaracteristica(this.prepararAgregarCaracteristica(caracteristicaDTO));
@@ -49,7 +69,7 @@ public class GestionCaracteristicaBean implements IGestionCaracteristicaBean {
 	}
 
 	@Override
-	public void modificarFenomeno(CaracteristicaDTO caracteristicaDTO) throws ServiciosException {
+	public void actualizarCaracteristica(CaracteristicaDTO caracteristicaDTO) throws ServiciosException {
 		// TODO Auto-generated method stub
 		
 	}
@@ -57,7 +77,7 @@ public class GestionCaracteristicaBean implements IGestionCaracteristicaBean {
 	@Override
 	public List<CaracteristicaDTO> obtenerCaracteristicas() throws ServiciosException {
 		// TODO Auto-generated method stub
-		return null;
+		return this.prepararTodasLasCaracteristicas();
 	}
 
 	

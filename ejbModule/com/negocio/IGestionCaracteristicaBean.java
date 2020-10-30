@@ -10,7 +10,7 @@ import com.exception.ServiciosException;
 public interface IGestionCaracteristicaBean {
 
 	public void agregarCaracteristica(CaracteristicaDTO caracteristicaDTO) throws ServiciosException;
-	public void modificarFenomeno(CaracteristicaDTO caracteristicaDTO) throws   ServiciosException;
+	public void actualizarCaracteristica(CaracteristicaDTO caracteristicaDTO) throws   ServiciosException;
 	public List<CaracteristicaDTO> obtenerCaracteristicas() throws ServiciosException;
 	
 	
