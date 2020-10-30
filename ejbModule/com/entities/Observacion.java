@@ -41,13 +41,18 @@ public class Observacion implements Serializable {
 	@JoinColumn(foreignKey=@ForeignKey(name="fk_experto_observacion"))
 	private Usuario usr_experto;
 	
+	@Column(name = "validar")
 	private boolean validarExperto;
 	
+	@Column(name = "latitud")
 	private double latitud;
 	
+	@Column(name = "longitud")
 	private double longitud;
 	
-	private String imagen;
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
+	private byte[] imagen;
 	
 
 	public double getLatitud() {
@@ -70,12 +75,15 @@ public class Observacion implements Serializable {
 	}
 
 
-	public String getImagen() {
+	
+
+
+	public byte[] getImagen() {
 		return imagen;
 	}
 
 
-	public void setImagen(String imagen) {
+	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
 	}
 

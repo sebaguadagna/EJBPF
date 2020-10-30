@@ -82,6 +82,7 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 		o.setUsr_voluntario(u);
 		o.setLatitud(observacionDTO.getLatitud());
 		o.setLongitud(observacionDTO.getLongitud());
+		o.setImagen(observacionDTO.getImagen());
 		return o;
 			
 	}

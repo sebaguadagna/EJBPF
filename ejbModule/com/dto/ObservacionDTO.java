@@ -30,7 +30,7 @@ public class ObservacionDTO implements Serializable {
 	
 	private double longitud;
 	
-	private String imagen;
+	private byte[] imagen;
 	
 	private String departamento;
 	
@@ -120,11 +120,13 @@ public class ObservacionDTO implements Serializable {
 		this.validarExperto = validarExperto;
 	}
 
-	public String getImagen() {
+	
+
+	public byte[] getImagen() {
 		return imagen;
 	}
 
-	public void setImagen(String imagen) {
+	public void setImagen(byte[] imagen) {
 		this.imagen = imagen;
 	}
 
