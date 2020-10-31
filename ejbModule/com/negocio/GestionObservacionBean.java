@@ -103,6 +103,7 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 			oDTO.setImagen(o.getImagen());
 			oDTO.setLatitud(o.getLatitud());
 			oDTO.setLongitud(o.getLongitud());
+			oDTO.setLocalidad(o.getLocalidad().getNombre());
 			oDTO.setValidarExperto(o.isValidarExperto());
 			olDTO.add(oDTO);
 		}
