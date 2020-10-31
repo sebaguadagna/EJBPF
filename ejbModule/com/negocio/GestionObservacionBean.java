@@ -111,6 +111,23 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 		return olDTO;
 	}
 	
+	private ObservacionDTO prepararObservacionPorId(Long id) throws ServiciosException{
+		Observacion o = observacionPersistencia.obtenerPorPK(id).get(0);
+		ObservacionDTO oDTO = new ObservacionDTO();
+		oDTO.setId_observacion(o.getId_observacion());
+		oDTO.setCategoriaFenomeno(o.getCategoria().getNombre());
+		oDTO.setDepartamento(o.getLocalidad().getDepartamento().getNombre().name());
+		oDTO.setDescripcion(o.getDescripcion());
+		oDTO.setEmailVoluntario(o.getUsr_voluntario().getEmail());
+		oDTO.setFecha(o.getFecha());
+		oDTO.setLocalidad(o.getLocalidad().getNombre());
+		oDTO.setImagen(o.getImagen());
+		oDTO.setLatitud(o.getLatitud());
+		oDTO.setLongitud(o.getLongitud());
+		
+		return oDTO;
+	}
+	
 	
 	@Override
 	public void agregarObservacion(ObservacionDTO observacionDTO) throws ServiciosException {
@@ -134,7 +151,10 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 	return this.prepararObservacionesPorUsuario(email);
 	}
 
-	
+	@Override
+	public ObservacionDTO obtenerObservacionPorId (Long id) throws ServiciosException{
+		return this.prepararObservacionPorId(id);
+	}
 	
 
 }
