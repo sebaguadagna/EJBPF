@@ -69,7 +69,7 @@ public class ObservacionDAO implements IObservacionDAO {
 	@Override
 	public List<Observacion> obtenerPorUsuario(Usuario usuario) throws ServiciosException {
 		try {
-			TypedQuery<Observacion> query = em.createQuery("SELECT o FROM Observacion o WHERE usr_voluntario = :usu", Observacion.class)
+			TypedQuery<Observacion> query = em.createQuery("SELECT o FROM Observacion o WHERE usr_voluntario = :usu ORDER BY ID_OBSERVACION DESC", Observacion.class)
 					.setParameter("usu", usuario);
 			return query.getResultList();
 			} catch (PersistenceException e) {
