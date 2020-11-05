@@ -37,7 +37,7 @@ public class ObservacionDAO implements IObservacionDAO {
 			em.flush();
 		} catch (PersistenceException e) {
 		    
-			e.getStackTrace();
+			throw new ServiciosException(e.getMessage());
 		}
 		
 	}
