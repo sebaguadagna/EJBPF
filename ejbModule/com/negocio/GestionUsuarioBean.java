@@ -150,6 +150,7 @@ public class GestionUsuarioBean implements IGestionUsuarioBean {
     	
     	if ( usr != null) {
     		udto.setNombre(usr.getNombre());
+    		udto.setApellido(usr.getApellido());
     		udto.setEmail(usr.getEmail());
     		udto.setRol(usr.getRol().getRol().toString());
     		udto.setEstadoUsuario(usr.getEstado().getEstado_valor().toString());
