@@ -57,6 +57,7 @@ public class ObservacionDAO implements IObservacionDAO {
 	@Override
 	public void modificarObservacion(Observacion obs) throws ServiciosException {
 		try {
+			obs = em.find(Observacion.class, obs.getId_observacion());
 			em.merge(obs);
 			em.flush();
 		} catch (PersistenceException e) {

@@ -36,7 +36,17 @@ public class ObservacionDTO implements Serializable {
 	
 	private boolean validarExperto;
 	
+	private String estado;
 	
+	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
 	public Long getId_observacion() {
 		return id_observacion;
 	}

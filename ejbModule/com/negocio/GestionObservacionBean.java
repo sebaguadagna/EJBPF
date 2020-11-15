@@ -105,6 +105,8 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 			oDTO.setLongitud(o.getLongitud());
 			oDTO.setLocalidad(o.getLocalidad().getNombre());
 			oDTO.setValidarExperto(o.isValidarExperto());
+			String estado = (o.isValidarExperto())?"Se validó":"Sin validar";
+			oDTO.setEstado(estado);
 			olDTO.add(oDTO);
 		}
 		
@@ -124,10 +126,45 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 		oDTO.setImagen(o.getImagen());
 		oDTO.setLatitud(o.getLatitud());
 		oDTO.setLongitud(o.getLongitud());
+		oDTO.setValidarExperto(o.isValidarExperto());
 		
 		return oDTO;
 	}
 	
+	private List<ObservacionDTO> prepararTodasLasObservaciones() throws ServiciosException{
+	
+		List<Observacion> oList = observacionPersistencia.obtenerTodos();		
+	
+		List<ObservacionDTO> olDTO = new ArrayList<ObservacionDTO>();
+		
+		for(Observacion o : oList) {
+			ObservacionDTO oDTO = new ObservacionDTO();
+			oDTO.setCategoriaFenomeno(o.getCategoria().getNombre());
+			oDTO.setDepartamento(o.getLocalidad().getDepartamento().getNombre().name());
+			oDTO.setDescripcion(o.getDescripcion());
+			oDTO.setEmailVoluntario(o.getUsr_voluntario().getEmail());
+			oDTO.setFecha(o.getFecha());
+			oDTO.setId_observacion(o.getId_observacion());
+			oDTO.setImagen(o.getImagen());
+			oDTO.setLatitud(o.getLatitud());
+			oDTO.setLongitud(o.getLongitud());
+			oDTO.setLocalidad(o.getLocalidad().getNombre());
+			oDTO.setValidarExperto(o.isValidarExperto());
+			String estado = (o.isValidarExperto())?"Se validó":"Sin validar";
+			oDTO.setEstado(estado);
+			olDTO.add(oDTO);
+			
+		}
+		
+		return olDTO;
+	
+	}
+	
+	private Observacion prepararActualizarObaservacion(ObservacionDTO observacionDTO)throws ServiciosException {
+		Observacion o = observacionPersistencia.findForMerge(observacionDTO.getId_observacion());
+		o.setValidarExperto(observacionDTO.isValidarExperto());
+		return o;
+	}
 	
 	@Override
 	public void agregarObservacion(ObservacionDTO observacionDTO) throws ServiciosException {
@@ -137,8 +174,7 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 
 	@Override
 	public void actualizarObservacion(ObservacionDTO observacionDTO) throws ServiciosException {
-		// TODO Auto-generated method stub
-		
+		observacionPersistencia.modificarObservacion(this.prepararActualizarObaservacion(observacionDTO));
 	}
 
 	@Override
@@ -154,6 +190,12 @@ public class GestionObservacionBean implements IGestionObservacionBean {
 	@Override
 	public ObservacionDTO obtenerObservacionPorId (Long id) throws ServiciosException{
 		return this.prepararObservacionPorId(id);
+	}
+
+	@Override
+	public List<ObservacionDTO> obtenerTodasObservaciones() throws ServiciosException {
+		// TODO Auto-generated method stub
+		return this.prepararTodasLasObservaciones();
 	}
 	
 
